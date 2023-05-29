@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1038305031669",
+    "project_id": "i-service-ca5e5",
+    "storage_bucket": "i-service-ca5e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1038305031669:android:91b459224ff9ff7ecd9cbc",
+        "android_client_info": {
+          "package_name": "com.example.i_service"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVpvQp1WDuayDLYejPt-caJ_D76jGDYA4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
