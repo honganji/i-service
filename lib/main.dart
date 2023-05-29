@@ -37,20 +37,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  final user = <String, dynamic>{
-    "first": "Ada",
-    "last": "Lovelace",
-    "born": 1815
-  };
-
   // 作成したドキュメント一覧
   List<DocumentSnapshot> documentList = [];
 
@@ -64,11 +50,11 @@ class _MyHomePageState extends State<MyHomePage> {
           (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
         //Error Handling conditions
         if (snapshot.hasError) {
-          return Text("Something went wrong");
+          return const Text("Something went wrong");
         }
 
         if (snapshot.hasData && !snapshot.data!.exists) {
-          return Text("Document does not exist");
+          return const Text("Document does not exist");
         }
 
         //Data is output to the user
@@ -83,12 +69,26 @@ class _MyHomePageState extends State<MyHomePage> {
                   person.add({"name": "yamada", "age": 26});
                 },
                 child: const Text("add user info"),
-              )
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  person
+                      .doc("7DfERcoaoKYhPl4h2K6V")
+                      .set({"name": "Kanna-chan", "age": 39});
+                },
+                child: const Text("fix user info"),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  person.doc("xXQeti1cIzREhNCAKZ65").delete();
+                },
+                child: const Text("delete user info"),
+              ),
             ],
           );
         }
 
-        return Text("loading");
+        return const Text("loading");
       },
     );
   }
