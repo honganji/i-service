@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:i_service/routes.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'i-service'),
+      routes: Routes.routes,
     );
   }
 }
@@ -83,6 +85,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   person.doc("xXQeti1cIzREhNCAKZ65").delete();
                 },
                 child: const Text("delete user info"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.home);
+                },
+                child: const Text("move to home"),
               ),
             ],
           );
