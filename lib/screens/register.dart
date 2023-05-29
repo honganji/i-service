@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:i_service/routes.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class Registar extends StatelessWidget {
+  const Registar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +10,7 @@ class Login extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Login"),
+          title: const Text("Sign Up"),
           actions: [
             IconButton(
               onPressed: () {
@@ -38,13 +37,7 @@ class Login extends StatelessWidget {
                 decoration: const InputDecoration(labelText: "Password"),
               ),
             ),
-            ElevatedButton(onPressed: () {}, child: const Text("Login")),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.register);
-              },
-              child: const Text("Sign up"),
-            )
+            ElevatedButton(onPressed: () {}, child: const Text("Sign Up")),
           ],
         ));
   }

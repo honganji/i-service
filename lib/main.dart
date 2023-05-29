@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'i-service'),
+      initialRoute: Routes.start,
       routes: Routes.routes,
     );
   }
@@ -88,9 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.home);
+                  Navigator.pushNamed(context, Routes.login);
                 },
-                child: const Text("move to home"),
+                child: const Text("move to login screen"),
               ),
             ],
           );
