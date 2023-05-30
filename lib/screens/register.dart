@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:i_service/providers/auth_provider.dart';
-import 'package:i_service/routes.dart';
 import 'package:provider/provider.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+import '../providers/auth_provider.dart';
+
+class Registar extends StatelessWidget {
+  const Registar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class Login extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Login"),
+          title: const Text("Sign Up"),
           actions: [
             IconButton(
               onPressed: () {
@@ -44,19 +44,14 @@ class Login extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                await authProvider.signInWithEmailAndPassword(
+                await authProvider.createWiehEmailAndPassword(
                   emailController.text,
                   passwordController.text,
                 );
+                if (context.mounted) Navigator.of(context).pop();
               },
-              child: const Text("Login"),
+              child: const Text("Sign Up"),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.register);
-              },
-              child: const Text("Sign up"),
-            )
           ],
         ));
   }
