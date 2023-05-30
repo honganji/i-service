@@ -18,7 +18,8 @@ class AuthProvider with ChangeNotifier {
 
   Status get status => _status;
 
-  Stream<UserModel> get user => _auth.authStateChanges().map(_userFromFirebase);
+  Stream<UserModel?> get user =>
+      _auth.authStateChanges().map(_userFromFirebase);
 
   AuthProvider() {
     // initiate object
@@ -29,9 +30,10 @@ class AuthProvider with ChangeNotifier {
   }
 
   // detect live change of user authentication
-  UserModel _userFromFirebase(User? user) {
+  UserModel? _userFromFirebase(User? user) {
     if (user == null) {
-      return UserModel(uid: "");
+      // return UserModel(uid: "");
+      return null;
     }
 
     return UserModel(
@@ -53,17 +55,30 @@ class AuthProvider with ChangeNotifier {
   }
 
   // handle if user could sign in with email and password
-  Future<bool> signInWithEmailAndPassword(String email, String password) async {
-    try {
-      _status = Status.authenticating;
-      notifyListeners();
-      return true;
-    } catch (e) {
-      print("Error on the signin = ${e.toString()}");
-      _status = Status.unauthenticated;
-      notifyListeners();
-      return false;
-    }
+  Future<UserModel?> signInWithEmailAndPassword(
+      String email, String password) async {
+    // try {
+    //   final credential = await _auth.signInWithEmailAndPassword(
+    //       email: email, password: password);
+    //   _status = Status.authenticating;
+    //   notifyListeners();
+    //   return true;
+    // } catch (e) {
+    //   print("Error on the signin = ${e.toString()}");
+    //   _status = Status.unauthenticated;
+    //   notifyListeners();
+    //   return false;
+    // }
+    final credential = await _auth.signInWithEmailAndPassword(
+        email: email, password: password);
+    return _userFromFirebase(credential.user);
+  }
+
+  Future<UserModel?> createWiehEmailAndPassword(
+      String email, String password) async {
+    final credential = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    return _userFromFirebase(credential.user);
   }
 
   // Method to handle password reset email

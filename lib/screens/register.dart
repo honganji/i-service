@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/auth_provider.dart';
 
 class Registar extends StatelessWidget {
   const Registar({super.key});
@@ -7,6 +10,8 @@ class Registar extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+
+    final authProvider = Provider.of<AuthProvider>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -37,7 +42,16 @@ class Registar extends StatelessWidget {
                 decoration: const InputDecoration(labelText: "Password"),
               ),
             ),
-            ElevatedButton(onPressed: () {}, child: const Text("Sign Up")),
+            ElevatedButton(
+              onPressed: () async {
+                await authProvider.createWiehEmailAndPassword(
+                  emailController.text,
+                  passwordController.text,
+                );
+                if (context.mounted) Navigator.of(context).pop();
+              },
+              child: const Text("Sign Up"),
+            ),
           ],
         ));
   }

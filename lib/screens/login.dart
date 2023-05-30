@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:i_service/providers/auth_provider.dart';
 import 'package:i_service/routes.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -8,6 +10,8 @@ class Login extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
+
+    final authProvider = Provider.of<AuthProvider>(context);
 
     return Scaffold(
         appBar: AppBar(
@@ -38,7 +42,15 @@ class Login extends StatelessWidget {
                 decoration: const InputDecoration(labelText: "Password"),
               ),
             ),
-            ElevatedButton(onPressed: () {}, child: const Text("Login")),
+            ElevatedButton(
+              onPressed: () async {
+                await authProvider.signInWithEmailAndPassword(
+                  emailController.text,
+                  passwordController.text,
+                );
+              },
+              child: const Text("Login"),
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, Routes.register);
