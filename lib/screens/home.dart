@@ -13,19 +13,10 @@ class Home extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: const Icon(Icons.arrow_back),
-          ),
-        ],
       ),
       body: Center(
         child: Column(
           children: [
-            const Text("Home"),
             ElevatedButton(
               onPressed: () async {
                 await authProvider.signOut();
