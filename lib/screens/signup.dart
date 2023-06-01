@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:i_service/providers/auth_provider.dart';
 import 'package:i_service/routes.dart';
 import 'package:i_service/widgets/title.dart';
 import 'package:provider/provider.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+import '../providers/auth_provider.dart';
+
+class SignUp extends StatelessWidget {
+  const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -61,30 +61,6 @@ class Login extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () async {
                       try {
-                        await authProvider.signInWithEmailAndPassword(
-                          emailController.text,
-                          passwordController.text,
-                        );
-                        if (context.mounted) {
-                          Navigator.pushReplacementNamed(context, Routes.home);
-                        }
-                      } catch (e) {
-                        Fluttertoast.showToast(
-                            msg: e.toString(),
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        print(e);
-                      }
-                    },
-                    child: const Text("Login"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      try {
                         await authProvider.createWiehEmailAndPassword(
                           emailController.text,
                           passwordController.text,
@@ -93,14 +69,6 @@ class Login extends StatelessWidget {
                           Navigator.pushReplacementNamed(context, Routes.home);
                         }
                       } catch (e) {
-                        Fluttertoast.showToast(
-                            msg: e.toString(),
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
                         print(e);
                       }
                     },
