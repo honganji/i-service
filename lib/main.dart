@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:i_service/constants/theme.dart';
 import 'package:i_service/providers/auth_provider.dart';
-import 'package:i_service/routes.dart';
+import 'package:i_service/constants/routes.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -26,12 +27,8 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
-        // home: const MyHomePage(title: 'i-service'),
+        // debugShowCheckedModeBanner: false,
+        theme: AppTheme.theme,
         initialRoute: Routes.start,
         routes: Routes.routes,
       ),
