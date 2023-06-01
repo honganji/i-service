@@ -88,7 +88,7 @@ class AuthProvider with ChangeNotifier {
 
   // Method to handle user signing out
   Future<void> signOut() async {
-    _auth.signOut();
+    await _auth.signOut();
     _status = Status.unauthenticated;
     notifyListeners();
   }

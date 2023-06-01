@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:i_service/providers/auth_provider.dart';
+import 'package:i_service/routes.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
@@ -28,6 +29,9 @@ class Home extends StatelessWidget {
             ElevatedButton(
               onPressed: () async {
                 await authProvider.signOut();
+                if (context.mounted) {
+                  Navigator.pushReplacementNamed(context, Routes.start);
+                }
               },
               child: const Text("Sign Out!"),
             )
