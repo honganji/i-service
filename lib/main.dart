@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:i_service/constants/theme.dart';
+import 'package:i_service/model/bottom_nav_bar_model.dart';
 import 'package:i_service/providers/auth_provider.dart';
 import 'package:i_service/routes.dart';
 import 'package:provider/provider.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AuthProvider>(
           create: (_) => AuthProvider(),
+        ),
+        ChangeNotifierProvider<BottomNavBarModel>(
+          create: (_) => BottomNavBarModel(),
         ),
       ],
       child: MaterialApp(
