@@ -57,18 +57,6 @@ class AuthProvider with ChangeNotifier {
   // handle if user could sign in with email and password
   Future<UserModel?> signInWithEmailAndPassword(
       String email, String password) async {
-    // try {
-    //   final credential = await _auth.signInWithEmailAndPassword(
-    //       email: email, password: password);
-    //   _status = Status.authenticating;
-    //   notifyListeners();
-    //   return true;
-    // } catch (e) {
-    //   print("Error on the signin = ${e.toString()}");
-    //   _status = Status.unauthenticated;
-    //   notifyListeners();
-    //   return false;
-    // }
     final credential = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
     return _userFromFirebase(credential.user);
@@ -92,4 +80,9 @@ class AuthProvider with ChangeNotifier {
     _status = Status.unauthenticated;
     notifyListeners();
   }
+
+  // Change password
+  // Future<void> changePassword(String newPassword) async {
+  //   await _auth.updatePassword()
+  // }
 }
