@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:i_service/providers/auth_provider.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:i_service/routes.dart';
-import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
-
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home"),
+        backgroundColor: HexColor("#1F9478"),
+        elevation: 10,
       ),
       body: Center(
         child: Column(
           children: [
             ElevatedButton(
-              onPressed: () async {
-                await authProvider.signOut();
-                if (context.mounted) {
-                  Navigator.pushReplacementNamed(context, Routes.start);
-                }
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, Routes.setting);
               },
-              child: const Text("Sign Out!"),
+              child: const Text("move to setting screen"),
             )
           ],
         ),
