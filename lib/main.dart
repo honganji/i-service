@@ -3,7 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:i_service/constants/theme.dart';
 import 'package:i_service/model/bottom_nav_bar_model.dart';
+import 'package:i_service/model/data_model.dart';
 import 'package:i_service/providers/auth_provider.dart';
+import 'package:i_service/providers/data_provider.dart';
 import 'package:i_service/routes.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
@@ -29,12 +31,16 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<BottomNavBarModel>(
           create: (_) => BottomNavBarModel(),
         ),
+        ChangeNotifierProvider<DataProvider>(
+          create: (_) => DataProvider(),
+        ),
       ],
       child: MaterialApp(
         // debugShowCheckedModeBanner: false,
         theme: AppTheme.theme,
         initialRoute: Routes.start,
         routes: Routes.routes,
+        // home: MyHomePage(title: "title"),
       ),
     );
   }
