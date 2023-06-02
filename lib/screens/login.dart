@@ -58,53 +58,69 @@ class Login extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      try {
-                        await authProvider.signInWithEmailAndPassword(
-                          emailController.text,
-                          passwordController.text,
-                        );
-                        if (context.mounted) {
-                          Navigator.pushReplacementNamed(context, Routes.home);
-                        }
-                      } catch (e) {
-                        Fluttertoast.showToast(
-                            msg: e.toString(),
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        print(e);
-                      }
-                    },
-                    child: const Text("Login"),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 40),
+                    child: SizedBox(
+                      height: 70,
+                      width: 220,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          try {
+                            await authProvider.signInWithEmailAndPassword(
+                              emailController.text,
+                              passwordController.text,
+                            );
+                            if (context.mounted) {
+                              Navigator.pushReplacementNamed(
+                                  context, Routes.wrapper);
+                            }
+                          } catch (e) {
+                            Fluttertoast.showToast(
+                                msg: e.toString(),
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                            print(e);
+                          }
+                        },
+                        child: const Text("Login"),
+                      ),
+                    ),
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      try {
-                        await authProvider.createWiehEmailAndPassword(
-                          emailController.text,
-                          passwordController.text,
-                        );
-                        if (context.mounted) {
-                          Navigator.pushReplacementNamed(context, Routes.home);
-                        }
-                      } catch (e) {
-                        Fluttertoast.showToast(
-                            msg: e.toString(),
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.CENTER,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.red,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        print(e);
-                      }
-                    },
-                    child: const Text("Sign up"),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 40),
+                    child: SizedBox(
+                      height: 70,
+                      width: 220,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          try {
+                            await authProvider.createWiehEmailAndPassword(
+                              emailController.text,
+                              passwordController.text,
+                            );
+                            if (context.mounted) {
+                              Navigator.pushReplacementNamed(
+                                  context, Routes.wrapper);
+                            }
+                          } catch (e) {
+                            Fluttertoast.showToast(
+                                msg: e.toString(),
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0);
+                            print(e);
+                          }
+                        },
+                        child: const Text("Sign up"),
+                      ),
+                    ),
                   )
                 ],
               ),
