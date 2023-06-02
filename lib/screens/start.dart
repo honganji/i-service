@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:i_service/model/use_model.dart';
 import 'package:i_service/providers/auth_provider.dart';
-import 'package:i_service/screens/home.dart';
+import 'package:i_service/wrapper.dart';
 import 'package:i_service/screens/login.dart';
 import 'package:i_service/widgets/title.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +19,7 @@ class Start extends StatelessWidget {
         builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             final UserModel? user = snapshot.data;
-            return user == null ? const Login() : const Home();
+            return user == null ? const Login() : Wrapper();
           } else {
             return Scaffold(
               backgroundColor: HexColor("#1F9478"),
