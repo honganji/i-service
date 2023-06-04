@@ -7,15 +7,15 @@ class DataProvider with ChangeNotifier {
   List<QuestionModel> questionList = [];
 
   Future<List<QuestionModel>> getCollection(String collectionName) async {
-    final data = await _db.collection(collectionName).get();
-    List<QuestionModel> _questionList = [];
-    data.docs.map((doc) {
-      _questionList.add(QuestionModel(doc["title"] ?? ""));
-      // print(doc["title"]);
+    final questionCollection = await _db.collection(collectionName).get();
+    // final userDoc =
+    //     await _db.collection(collectionName).doc("7DfERcoaoKYhPl4h2K6V").get();
+    List<QuestionModel> questionList = [];
+    questionCollection.docs.map((doc) async {
+      questionList.add(QuestionModel(
+          doc["title"] ?? "", doc["7DfERcoaoKYhPl4h2K6V"] ?? "", doc["hint"]));
     }).toList();
-    questionList = _questionList;
-
-    print(questionList[0].title);
+    questionList = questionList;
 
     return questionList;
   }
