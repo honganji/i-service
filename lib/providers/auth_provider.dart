@@ -2,21 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:i_service/model/use_model.dart';
 
-enum Status {
-  uninitialized,
-  authenticated,
-  authenticating,
-  unauthenticated,
-  resisterd,
-}
-
 class AuthProvider with ChangeNotifier {
   //Firebase Authentication Instanse
   late FirebaseAuth _auth;
-
-  Status _status = Status.unauthenticated;
-
-  Status get status => _status;
 
   Stream<UserModel?> get user =>
       _auth.authStateChanges().map(_userFromFirebase);
@@ -24,9 +12,6 @@ class AuthProvider with ChangeNotifier {
   AuthProvider() {
     // initiate object
     _auth = FirebaseAuth.instance;
-
-    // listen firebase authentication changes
-    _auth.authStateChanges().listen(_onAuthStateChanged);
   }
 
   // detect live change of user authentication
@@ -41,17 +26,6 @@ class AuthProvider with ChangeNotifier {
       email: user.email,
       displayName: user.displayName,
     );
-  }
-
-  //
-  Future<void> _onAuthStateChanged(User? user) async {
-    if (user == null) {
-      _status = Status.unauthenticated;
-    } else {
-      _userFromFirebase(user);
-      _status = Status.authenticated;
-    }
-    notifyListeners();
   }
 
   // handle if user could sign in with email and password
@@ -77,12 +51,17 @@ class AuthProvider with ChangeNotifier {
   // Method to handle user signing out
   Future<void> signOut() async {
     await _auth.signOut();
-    _status = Status.unauthenticated;
     notifyListeners();
   }
 
-  // Change password
-  // Future<void> changePassword(String newPassword) async {
-  //   await _auth.updatePassword()
-  // }
+  Future<String> getUserId() async {
+    User? user = _auth.currentUser;
+
+    if (user == null) {
+      // return UserModel(uid: "");
+      return "";
+    }
+
+    return user.uid;
+  }
 }

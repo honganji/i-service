@@ -13,13 +13,17 @@ class Start extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = Provider.of<UserModel>(context);
 
     return StreamBuilder<UserModel?>(
         stream: authProvider.user,
         builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
-            final UserModel? user = snapshot.data;
-            return user == null ? const Login() : Wrapper();
+            if (snapshot.data != null) {
+              user.uid = snapshot.data!.uid.toString();
+              return Wrapper();
+            }
+            return const Login();
           } else {
             return Scaffold(
               backgroundColor: HexColor("#1F9478"),
