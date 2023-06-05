@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:i_service/model/use_model.dart';
 import 'package:i_service/providers/auth_provider.dart';
+import 'package:i_service/providers/data_provider.dart';
 import 'package:i_service/routes.dart';
 import 'package:i_service/widgets/title.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +17,8 @@ class Login extends StatelessWidget {
     final TextEditingController passwordController = TextEditingController();
 
     final authProvider = Provider.of<AuthProvider>(context);
+    DataProvider dataProvider = Provider.of<DataProvider>(context);
+    UserModel? user = Provider.of<UserModel>(context);
 
     return Material(
       child: Container(
@@ -70,7 +74,10 @@ class Login extends StatelessWidget {
                               emailController.text,
                               passwordController.text,
                             );
+                            final userId = await authProvider.getUserId();
+                            user.setUid(userId);
                             if (context.mounted) {
+                              print(user.uid ?? "");
                               Navigator.pushReplacementNamed(
                                   context, Routes.wrapper);
                             }
@@ -102,6 +109,12 @@ class Login extends StatelessWidget {
                               emailController.text,
                               passwordController.text,
                             );
+                            final userId = await authProvider.getUserId();
+                            print(userId);
+                            user.setUid(userId);
+                            await dataProvider.createAnswer(userId);
+                            await dataProvider.createChecked(userId);
+                            Future.delayed(const Duration(seconds: 7));
                             if (context.mounted) {
                               Navigator.pushReplacementNamed(
                                   context, Routes.wrapper);
