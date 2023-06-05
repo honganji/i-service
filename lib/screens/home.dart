@@ -57,7 +57,7 @@ class Home extends StatelessWidget {
                               textColor: Colors.white,
                               fontSize: 16.0);
                         },
-                        child: const Text("Fix Info")),
+                        child: const Text("Save Info")),
                   ),
                 ),
               ),
