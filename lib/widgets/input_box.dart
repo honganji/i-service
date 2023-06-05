@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:i_service/providers/data_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +15,7 @@ class InputBox extends StatelessWidget {
   Widget build(BuildContext context) {
     DataProvider dataProvider = Provider.of<DataProvider>(context);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,6 +32,7 @@ class InputBox extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide.none,
               ),
+              hintStyle: TextStyle(color: HexColor("#c4c4c4")),
             ),
             initialValue: answer,
             onChanged: (text) {
