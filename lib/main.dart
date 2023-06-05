@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:i_service/constants/theme.dart';
 import 'package:i_service/model/bottom_nav_bar_model.dart';
+import 'package:i_service/model/toggle_model.dart';
 import 'package:i_service/model/use_model.dart';
 import 'package:i_service/providers/auth_provider.dart';
 import 'package:i_service/providers/data_provider.dart';
@@ -36,6 +37,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<UserModel>(
           create: (_) => UserModel(),
+        ),
+        ChangeNotifierProvider<ToggleState>(
+          create: (_) => ToggleState(),
         ),
       ],
       child: MaterialApp(

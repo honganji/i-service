@@ -24,7 +24,7 @@ class AuthProvider with ChangeNotifier {
     return UserModel(
       uid: user.uid,
       email: user.email,
-      displayName: user.displayName,
+      name: user.displayName,
     );
   }
 
