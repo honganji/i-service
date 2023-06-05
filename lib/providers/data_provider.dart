@@ -10,13 +10,38 @@ class DataProvider with ChangeNotifier {
     final questionCollection = await _db.collection(collectionName).get();
     // final userDoc =
     //     await _db.collection(collectionName).doc("7DfERcoaoKYhPl4h2K6V").get();
-    List<QuestionModel> questionList = [];
+    List<QuestionModel> tempList = [];
     questionCollection.docs.map((doc) async {
-      questionList.add(QuestionModel(
+      tempList.add(QuestionModel(
           doc["title"] ?? "", doc["7DfERcoaoKYhPl4h2K6V"] ?? "", doc["hint"]));
     }).toList();
-    questionList = questionList;
+
+    questionList = tempList;
 
     return questionList;
+  }
+
+  void setQuestionList(String text, int index) {
+    questionList[index].answer = text;
+  }
+
+  Future<void> saveInfo() async {
+    final questionCollection = await _db.collection("questions").get();
+    print("started");
+    questionCollection.docs.asMap().forEach((index, doc) async {
+      print("started to saving");
+      await _db.collection("questions").doc(doc.id).update({
+        "7DfERcoaoKYhPl4h2K6V": questionList[index].answer,
+      });
+    });
+  }
+
+  Future<void> updateValue() async {
+    print("started");
+    await _db
+        .collection("questions")
+        .doc("Qd6azUj1wtjEZWCObRvU")
+        .update({"7DfERcoaoKYhPl4h2K6V": "Canada"});
+    print("end");
   }
 }

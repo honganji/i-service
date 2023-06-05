@@ -21,8 +21,11 @@ class Home extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.done) {
           final List<Widget> inputBoxList =
               List.generate(snapshot.data!.length, (index) {
-            return InputBox(snapshot.data![index].title,
-                snapshot.data![index].answer, snapshot.data![index].hint);
+            return InputBox(
+                snapshot.data![index].title,
+                snapshot.data![index].answer,
+                snapshot.data![index].hint,
+                index);
           });
           return Stack(
             children: [
@@ -40,10 +43,13 @@ class Home extends StatelessWidget {
                     height: 70,
                     width: 320,
                     child: ElevatedButton(
-                        onPressed: () {}, child: const Text("Fix Info")),
+                        onPressed: () async {
+                          await dataProvider.saveInfo();
+                        },
+                        child: const Text("Fix Info")),
                   ),
                 ),
-              )
+              ),
             ],
           );
         }

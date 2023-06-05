@@ -3,11 +3,12 @@ import 'package:i_service/providers/data_provider.dart';
 import 'package:provider/provider.dart';
 
 class InputBox extends StatelessWidget {
-  const InputBox(this.title, this.answer, this.hint, {super.key});
+  const InputBox(this.title, this.answer, this.hint, this.index, {super.key});
 
   final String title;
   final String answer;
   final String hint;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +33,9 @@ class InputBox extends StatelessWidget {
               ),
             ),
             initialValue: answer,
+            onChanged: (text) {
+              dataProvider.setQuestionList(text, index);
+            },
           ),
         ],
       ),
