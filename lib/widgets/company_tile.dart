@@ -43,9 +43,20 @@ class CompanyTile extends StatelessWidget {
                 height: MediaQuery.of(context).size.height / 4,
                 width: double.infinity,
                 child: FittedBox(
-                  fit: BoxFit.fill,
-                  child: Image.network(imgUrl),
-                )),
+                    fit: BoxFit.fill,
+                    child: Image.network(
+                      imgUrl,
+                      errorBuilder: (context, error, stackTrace) => Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Image.asset("assets/images/hospital.png"),
+                          const Text(
+                            "No Image",
+                            style: TextStyle(color: Colors.grey, fontSize: 40),
+                          )
+                        ],
+                      ),
+                    ))),
           ),
         ],
       ),

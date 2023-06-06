@@ -22,7 +22,7 @@ class Wrapper extends StatelessWidget {
       label: '',
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.work),
+      icon: Icon(Icons.check),
       label: '',
     ),
   ];
