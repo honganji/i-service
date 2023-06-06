@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// home name tile
 class HomeTitle extends StatelessWidget {
   const HomeTitle({super.key});
 

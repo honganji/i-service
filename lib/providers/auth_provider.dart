@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:i_service/model/use_model.dart';
 
+// enum to distinguish authentication state
 enum AuthStatus { unAuthorized, authorizing, authorized }
 
+// class for firebase authentication
 class AuthProvider with ChangeNotifier {
   //Firebase Authentication Instanse
   late FirebaseAuth _auth;

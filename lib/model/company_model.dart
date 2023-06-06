@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// class of company data
 class CompanyModel with ChangeNotifier {
   String name;
   String imgUrl;

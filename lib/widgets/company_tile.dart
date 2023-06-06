@@ -3,6 +3,7 @@ import 'package:i_service/model/use_model.dart';
 import 'package:i_service/providers/data_provider.dart';
 import 'package:provider/provider.dart';
 
+// tile for company information
 class CompanyTile extends StatelessWidget {
   CompanyTile(this.name, this.imgUrl, this.checked, this.companyId,
       {super.key});

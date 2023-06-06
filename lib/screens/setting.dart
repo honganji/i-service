@@ -4,6 +4,7 @@ import 'package:i_service/providers/auth_provider.dart';
 import 'package:i_service/routes.dart';
 import 'package:provider/provider.dart';
 
+// setting screen(unused)
 class Setting extends StatelessWidget {
   const Setting({super.key});
 

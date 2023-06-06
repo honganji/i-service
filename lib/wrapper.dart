@@ -9,13 +9,17 @@ import 'package:provider/provider.dart';
 
 class Wrapper extends StatelessWidget {
   Wrapper({super.key});
+
+  // list of pages
   final List<Widget> pageList = <Widget>[
     const Home(),
     const Company(),
   ];
 
+  // list of page names
   final List<String> pageNameList = <String>["Home", "Permission"];
 
+  // list of icon
   final tabItems = [
     const BottomNavigationBarItem(
       icon: Icon(Icons.home),

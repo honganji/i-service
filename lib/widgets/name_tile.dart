@@ -7,6 +7,7 @@ class NameTile extends StatelessWidget {
   final String name;
   final String id;
 
+  // name tile for custumer name screen
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -30,7 +31,7 @@ class NameTile extends StatelessWidget {
               name,
               style: const TextStyle(fontSize: 30),
             ),
-            Icon(Icons.arrow_circle_right_rounded),
+            const Icon(Icons.arrow_circle_right_rounded),
           ],
         ),
       ),

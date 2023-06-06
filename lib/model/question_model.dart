@@ -1,3 +1,5 @@
+// class for question data
+
 class QuestionModel {
   final String? _title;
   String? _answer;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
+// class for theme data
 class AppTheme {
   static ThemeData theme = ThemeData(
     primarySwatch: Colors.green,

@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:i_service/model/company_model.dart';
 import 'package:i_service/model/question_model.dart';
 import 'package:i_service/model/use_model.dart';
-import 'package:i_service/screens/company.dart';
 
+// class to use firebase firestore
 class DataProvider with ChangeNotifier {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   List<QuestionModel> questionList = [];

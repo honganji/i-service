@@ -11,6 +11,7 @@ class InputBox extends StatelessWidget {
   final String hint;
   final int index;
 
+  // input box for login screen
   @override
   Widget build(BuildContext context) {
     DataProvider dataProvider = Provider.of<DataProvider>(context);

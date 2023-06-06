@@ -5,6 +5,7 @@ import 'package:i_service/providers/data_provider.dart';
 import 'package:i_service/widgets/company_tile.dart';
 import 'package:provider/provider.dart';
 
+// company list screen
 class Company extends StatelessWidget {
   const Company({super.key});
 
