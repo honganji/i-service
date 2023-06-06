@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class UserModel with ChangeNotifier {
   String? uid;
   String? email;
-  String? displayName;
+  String? name;
 
   UserModel({
     this.uid,
     this.email,
-    this.displayName,
+    this.name,
   });
 
   void setUid(String id) {
