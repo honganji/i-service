@@ -80,7 +80,7 @@ class Login extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
-              child: TextField(
+              child: TextFormField(
                 controller: emailController,
                 decoration: const InputDecoration(labelText: "Email"),
               ),
@@ -104,11 +104,16 @@ class Login extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 20),
-                      child: TextField(
+                      child: TextFormField(
                         controller: nameController,
                         decoration: const InputDecoration(
                           labelText: "Name",
                         ),
+                        validator: (value) {
+                          if ((value == null) & toggleState.isSignUp)
+                            return "Please enter some text";
+                          return null;
+                        },
                       ),
                     ),
                   ),
@@ -117,11 +122,19 @@ class Login extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 5, horizontal: 20),
-                      child: TextField(
+                      child: TextFormField(
                         controller: imgUrlController,
                         decoration: const InputDecoration(
                           labelText: "Image Url",
                         ),
+                        validator: (value) {
+                          if ((value == null) &
+                              toggleState.isCompany &
+                              toggleState.isSignUp) {
+                            return "Please enter some text";
+                          }
+                          return null;
+                        },
                       ),
                     ),
                   ),
@@ -142,7 +155,6 @@ class Login extends StatelessWidget {
                               final userId = await authProvider.getUserId();
                               user.setUid(userId);
                               if (context.mounted) {
-                                print(user.uid ?? "");
                                 if (toggleState.isCompany) {
                                   Navigator.pushReplacementNamed(
                                       context, Routes.business);
@@ -162,7 +174,6 @@ class Login extends StatelessWidget {
                                   backgroundColor: Colors.red,
                                   textColor: Colors.white,
                                   fontSize: 16.0);
-                              print(e);
                             }
                           },
                           child: const Text("Login"),
@@ -186,14 +197,21 @@ class Login extends StatelessWidget {
                               );
                               final userId = await authProvider.getUserId();
                               user.setUid(userId);
-                              await dataProvider.createChecked(userId);
-                              await dataProvider.createAnswer(userId);
-                              await dataProvider.createUser(
-                                  userId, nameController.text);
-                              if (context.mounted) {
-                                Navigator.pushReplacementNamed(
-                                    context, Routes.wrapper);
-                              }
+                              await dataProvider.createAccount(
+                                  userId,
+                                  nameController.text,
+                                  imgUrlController.text,
+                                  toggleState.isCompany);
+                              authProvider.status = AuthStatus.authorized;
+                              user.setUid(userId);
+                              Fluttertoast.showToast(
+                                  msg: "Sign up is done!",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0);
                             } catch (e) {
                               Fluttertoast.showToast(
                                   msg: e.toString(),
@@ -203,7 +221,6 @@ class Login extends StatelessWidget {
                                   backgroundColor: Colors.red,
                                   textColor: Colors.white,
                                   fontSize: 16.0);
-                              print(e);
                             }
                           },
                           child: const Text("Sign up"),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:i_service/model/toggle_model.dart';
 import 'package:i_service/model/use_model.dart';
 import 'package:i_service/providers/auth_provider.dart';
+import 'package:i_service/screens/user_list.dart';
 import 'package:i_service/wrapper.dart';
 import 'package:i_service/screens/login.dart';
 import 'package:i_service/widgets/title.dart';
@@ -14,13 +16,17 @@ class Start extends StatelessWidget {
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
     UserModel user = Provider.of<UserModel>(context);
+    ToggleState toggleState = Provider.of<ToggleState>(context);
 
     return StreamBuilder<UserModel?>(
         stream: authProvider.user,
         builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
-            if (snapshot.data != null) {
+            print(authProvider.status);
+            if ((snapshot.data != null) &
+                (authProvider.status == AuthStatus.authorized)) {
               user.uid = snapshot.data!.uid.toString();
+              if (toggleState.isCompany) return const UserList();
               return Wrapper();
             }
             return const Login();

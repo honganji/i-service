@@ -96,6 +96,10 @@ class DataProvider with ChangeNotifier {
         .collection("companies")
         .doc(uid)
         .set({"name": name, "imgUrl": imgUrl});
+    final customerCollection = await _db.collection("users").get();
+    customerCollection.docs.asMap().forEach((index, doc) async {
+      await _db.collection("companies").doc(uid).update({doc.id: false});
+    });
   }
 
   Future<List<UserModel>> getCustomerList(String uid) async {
@@ -142,5 +146,14 @@ class DataProvider with ChangeNotifier {
     });
 
     return map;
+  }
+
+  Future<void> createAccount(
+      String uid, String name, String? imgUrl, bool isCompany) async {
+    isCompany
+        ? await createCompany(uid, name, imgUrl!)
+        : await createUser(uid, name);
+    await createChecked(uid);
+    await createAnswer(uid);
   }
 }

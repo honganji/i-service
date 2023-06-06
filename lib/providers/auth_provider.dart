@@ -2,9 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:i_service/model/use_model.dart';
 
+enum AuthStatus { unAuthorized, authorizing, authorized }
+
 class AuthProvider with ChangeNotifier {
   //Firebase Authentication Instanse
   late FirebaseAuth _auth;
+
+  AuthStatus status = AuthStatus.unAuthorized;
 
   Stream<UserModel?> get user =>
       _auth.authStateChanges().map(_userFromFirebase);
@@ -33,6 +37,7 @@ class AuthProvider with ChangeNotifier {
       String email, String password) async {
     final credential = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
+    status = AuthStatus.authorized;
     return _userFromFirebase(credential.user);
   }
 
@@ -40,6 +45,7 @@ class AuthProvider with ChangeNotifier {
       String email, String password) async {
     final credential = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
+    status = AuthStatus.authorizing;
     return _userFromFirebase(credential.user);
   }
 
