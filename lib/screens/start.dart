@@ -9,6 +9,7 @@ import 'package:i_service/screens/login.dart';
 import 'package:i_service/widgets/title.dart';
 import 'package:provider/provider.dart';
 
+// screen to distinguish authentication state
 class Start extends StatelessWidget {
   const Start({super.key});
 
@@ -17,7 +18,6 @@ class Start extends StatelessWidget {
     final authProvider = Provider.of<AuthProvider>(context);
     UserModel user = Provider.of<UserModel>(context);
     ToggleState toggleState = Provider.of<ToggleState>(context);
-
     return StreamBuilder<UserModel?>(
         stream: authProvider.user,
         builder: (BuildContext context, AsyncSnapshot<UserModel?> snapshot) {

@@ -5,6 +5,7 @@ import 'package:i_service/providers/data_provider.dart';
 import 'package:i_service/widgets/customer_tile.dart';
 import 'package:provider/provider.dart';
 
+// individual customer information screen
 class Individual extends StatelessWidget {
   const Individual({super.key});
 
@@ -34,7 +35,7 @@ class Individual extends StatelessWidget {
             appBar: AppBar(
               title: Text(
                 valueList[keyList.indexOf("name")],
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
               ),
               backgroundColor: HexColor("#1F9478"),
               elevation: 10,

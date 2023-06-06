@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// class for user data
 class UserModel with ChangeNotifier {
   String? uid;
   String? email;
