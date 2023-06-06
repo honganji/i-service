@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        // debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         theme: AppTheme.theme,
         initialRoute: Routes.start,
         routes: Routes.routes,
